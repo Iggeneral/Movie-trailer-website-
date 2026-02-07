@@ -515,7 +515,7 @@
 
     <script>
         // API Configuration
-        const API_BASE = '';
+        const API_BASE = '/api';
         let allMovies = [];
         let currentGenre = 'all';
         let currentSearch = '';
@@ -544,7 +544,7 @@
                 loading.style.display = 'block';
                 movieGrid.innerHTML = '';
                 
-                const response = await fetch(`/api/movies`);
+                const response = await fetch(`${API_BASE}/movies`);
                 allMovies = await response.json();
                 
                 displayMovies(allMovies);
@@ -558,7 +558,7 @@
         // Load genres from API
         async function loadGenres() {
             try {
-                const response = await fetch(`/api/genres`);
+                const response = await fetch(`${API_BASE}/genres`);
                 const genres = await response.json();
                 
                 genres.forEach(genre => {

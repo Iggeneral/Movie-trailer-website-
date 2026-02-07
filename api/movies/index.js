@@ -1,10 +1,3 @@
-const express = require('express');
-const cors = require('cors');
-
-const app = express();
-app.use(cors());
-
-// Movie data (same as in server.js)
 const movies = [
     {
         id: 1,
@@ -32,18 +25,8 @@ const movies = [
     }
 ];
 
-// API Routes
-app.get('/movies', (req, res) => {
+module.exports = (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Content-Type', 'application/json');
     res.json(movies);
-});
-
-app.get('/health', (req, res) => {
-    res.json({ 
-        status: 'OK', 
-        message: 'Movie API is running',
-        totalMovies: movies.length
-    });
-});
-
-// Export for Vercel
-module.exports = app;
+};
