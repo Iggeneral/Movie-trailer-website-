@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Movie Trailers Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { 
+            text-align: center; 
+            padding: 40px 0; 
+            animation: fadeIn 1s ease;
+        }
+        h1 { 
+            font-size: 3rem; 
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .movie-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: #ff4757;
+        }
+        .movie-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .play-btn {
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+        .play-btn:hover {
+            transform: scale(1.05);
+        }
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.5rem;
+            color: #ffd700;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .movie-card { animation: slideUp 0.5s ease; }
+        .movie-card:nth-child(2) { animation-delay: 0.1s; }
+        .movie-card:nth-child(3) { animation-delay: 0.2s; }
+        .movie-card:nth-child(4) { animation-delay: 0.3s; }
+        .movie-card:nth-child(5) { animation-delay: 0.4s; }
+        .movie-card:nth-child(6) { animation-delay: 0.5s; }
+        .movie-card:nth-child(7) { animation-delay: 0.6s; }
+        .movie-card:nth-child(8) { animation-delay: 0.7s; }
+        .movie-card:nth-child(9) { animation-delay: 0.8s; }
+        .movie-card:nth-child(10) { animation-delay: 0.9s; }
+        .movie-card:nth-child(11) { animation-delay: 1s; }
+        .movie-card:nth-child(12) { animation-delay: 1.1s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-film"></i> Movie Trailers Hub</h1>
+            <p>Watch 12 latest movie trailers with stunning animations</p>
+        </header>
+        
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner fa-spin"></i> Loading amazing trailers...
+        </div>
+        
+        <div class="movie-grid" id="movieGrid">
+            <!-- Movies will be loaded here -->
+        </div>
+    </div>
+    
+    <script>
+        // Load movies from API
+        async function loadMovies() {
+            try {
+                const response = await fetch('/api/movies');
+                const movies = await response.json();
+                
+                document.getElementById('loading').style.display = 'none';
+                const grid = document.getElementById('movieGrid');
+                
+                movies.forEach(movie => {
+                    const card = document.createElement('div');
+                    card.className = 'movie-card';
+                    card.innerHTML = `
+                        <img src="${movie.thumbnail}" alt="${movie.title}" 
+                             onerror="this.src='https://via.placeholder.com/300x200/333/fff?text=Movie'">
+                        <h3>${movie.title}</h3>
+                        <p>⭐ ${movie.rating}/10 | ${movie.genre.join(', ')}</p>
+                        <p>${movie.description}</p>
+                        <button class="play-btn" onclick="playTrailer('${movie.trailerUrl}')">
+                            <i class="fas fa-play"></i> Watch Trailer
+                        </button>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                document.getElementById('loading').innerHTML = 
+                    '<p style="color: #ff4757;">Error loading movies. Please refresh.</p>';
+            }
+        }
+        
+        function playTrailer(url) {
+            window.open(url, '_blank');
+        }
+        
+        // Load movies on page load
+        document.addEventListener('DOMContentLoaded', loadMovies);
+    </script>
+</body>
+</html>
