@@ -1,0 +1,292 @@
+[
+  {
+    "id": 1,
+    "title": "Dune: Part Two",
+    "description": "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Epic continuation of Frank Herbert's saga.",
+    "trailerUrl": "https://www.youtube.com/embed/Way9Dexny3w",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/xOMo8BRK7PfcJv9IsKZUClX8ha8.jpg",
+    "genre": [
+      "Sci-Fi",
+      "Adventure",
+      "Drama"
+    ],
+    "releaseYear": 2024,
+    "duration": "2h 46m",
+    "rating": 8.7,
+    "director": "Denis Villeneuve",
+    "cast": [
+      "Timothée Chalamet",
+      "Zendaya",
+      "Rebecca Ferguson",
+      "Javier Bardem"
+    ],
+    "popularity": 98,
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "The Batman",
+    "description": "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+    "trailerUrl": "https://www.youtube.com/embed/mqqft2x_Aa4",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/5P8SmMzSNYKTQSovBU5HMkuAE0H.jpg",
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "releaseYear": 2022,
+    "duration": "2h 56m",
+    "rating": 7.8,
+    "director": "Matt Reeves",
+    "cast": [
+      "Robert Pattinson",
+      "Zoë Kravitz",
+      "Paul Dano",
+      "Jeffrey Wright"
+    ],
+    "popularity": 88
+  },
+  {
+    "id": 3,
+    "title": "Spider-Man: Across the Spider-Verse",
+    "description": "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its existence. Masterpiece animation.",
+    "trailerUrl": "https://www.youtube.com/embed/shW9i6k8cB0",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/4HodYYKEIsQHOxgjzdQRxvsTNr.jpg",
+    "genre": [
+      "Animation",
+      "Action",
+      "Adventure"
+    ],
+    "releaseYear": 2023,
+    "duration": "2h 20m",
+    "rating": 8.6,
+    "director": "Joaquim Dos Santos",
+    "cast": [
+      "Shameik Moore",
+      "Hailee Steinfeld",
+      "Oscar Isaac",
+      "Brian Tyree Henry"
+    ],
+    "popularity": 92,
+    "featured": true
+  },
+  {
+    "id": 4,
+    "title": "Avatar: The Way of Water",
+    "description": "Jake Sully lives with his newfound family on Pandora. When a familiar threat returns, Jake must work with Neytiri and the army of the Na'vi race to protect their home.",
+    "trailerUrl": "https://www.youtube.com/embed/d9MyW72ELq0",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/s16H6tpK2utvwDtzZ8Qy4qm5Emw.jpg",
+    "genre": [
+      "Sci-Fi",
+      "Adventure",
+      "Fantasy"
+    ],
+    "releaseYear": 2022,
+    "duration": "3h 12m",
+    "rating": 7.6,
+    "director": "James Cameron",
+    "cast": [
+      "Sam Worthington",
+      "Zoe Saldana",
+      "Sigourney Weaver",
+      "Stephen Lang"
+    ],
+    "popularity": 85
+  },
+  {
+    "id": 5,
+    "title": "John Wick: Chapter 4",
+    "description": "John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe.",
+    "trailerUrl": "https://www.youtube.com/embed/qEVUtrk8_B4",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/h8gHn0OzBoaefsYseUByqsmEDMY.jpg",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "releaseYear": 2023,
+    "duration": "2h 49m",
+    "rating": 7.8,
+    "director": "Chad Stahelski",
+    "cast": [
+      "Keanu Reeves",
+      "Donnie Yen",
+      "Bill Skarsgård",
+      "Laurence Fishburne"
+    ],
+    "popularity": 87
+  },
+  {
+    "id": 6,
+    "title": "Barbie",
+    "description": "Barbie and Ken are having the time of their lives in colorful Barbie Land. However, when they get a chance to go to the real world, they discover the joys and perils of living among humans.",
+    "trailerUrl": "https://www.youtube.com/embed/pBk4NYhWNMM",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/ctMserH8g2SeOAnCw5gFjdQF8mo.jpg",
+    "genre": [
+      "Comedy",
+      "Adventure",
+      "Fantasy"
+    ],
+    "releaseYear": 2023,
+    "duration": "1h 54m",
+    "rating": 7,
+    "director": "Greta Gerwig",
+    "cast": [
+      "Margot Robbie",
+      "Ryan Gosling",
+      "America Ferrera",
+      "Kate McKinnon"
+    ],
+    "popularity": 85
+  },
+  {
+    "id": 7,
+    "title": "Oppenheimer",
+    "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during World War II. Nolan's epic thriller.",
+    "trailerUrl": "https://www.youtube.com/embed/bK6ldnjE3Y0",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR3n8zh.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/fm6KqXpk3M2HVveHwCrB8heMDQ5.jpg",
+    "genre": [
+      "Drama",
+      "History",
+      "Thriller"
+    ],
+    "releaseYear": 2023,
+    "duration": "3h 0m",
+    "rating": 8.3,
+    "director": "Christopher Nolan",
+    "cast": [
+      "Cillian Murphy",
+      "Emily Blunt",
+      "Matt Damon",
+      "Robert Downey Jr."
+    ],
+    "popularity": 90,
+    "featured": true
+  },
+  {
+    "id": 8,
+    "title": "Mission: Impossible - Dead Reckoning",
+    "description": "Ethan Hunt and his IMF team must track down a dangerous weapon that threatens all of humanity before it falls into the wrong hands, confronting a mysterious enemy.",
+    "trailerUrl": "https://www.youtube.com/embed/avz06PDqDbM",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/628Dep6AxEtDxjZoGP78TsOxYbK.jpg",
+    "genre": [
+      "Action",
+      "Thriller",
+      "Adventure"
+    ],
+    "releaseYear": 2023,
+    "duration": "2h 43m",
+    "rating": 7.7,
+    "director": "Christopher McQuarrie",
+    "cast": [
+      "Tom Cruise",
+      "Hayley Atwell",
+      "Ving Rhames",
+      "Simon Pegg"
+    ],
+    "popularity": 84
+  },
+  {
+    "id": 9,
+    "title": "Guardians of the Galaxy Vol. 3",
+    "description": "Still reeling from the loss of Gamora, Peter Quill rallies his team to defend the universe and protect one of their own. Emotional final chapter.",
+    "trailerUrl": "https://www.youtube.com/embed/u3V5KDHRQvk",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/5YZbUmjbMa3ClvSW1Wj3D6JCXmj.jpg",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Comedy"
+    ],
+    "releaseYear": 2023,
+    "duration": "2h 30m",
+    "rating": 7.9,
+    "director": "James Gunn",
+    "cast": [
+      "Chris Pratt",
+      "Zoe Saldana",
+      "Dave Bautista",
+      "Karen Gillan"
+    ],
+    "popularity": 83
+  },
+  {
+    "id": 10,
+    "title": "Black Panther: Wakanda Forever",
+    "description": "Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T'Challa's death.",
+    "trailerUrl": "https://www.youtube.com/embed/RlOB3UALvrQ",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/xDMIl84Qo5Tsu62c9DGWhmPI67A.jpg",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "releaseYear": 2022,
+    "duration": "2h 41m",
+    "rating": 7.2,
+    "director": "Ryan Coogler",
+    "cast": [
+      "Letitia Wright",
+      "Lupita Nyong'o",
+      "Danai Gurira",
+      "Winston Duke"
+    ],
+    "popularity": 80
+  },
+  {
+    "id": 11,
+    "title": "Top Gun: Maverick",
+    "description": "After more than 30 years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot.",
+    "trailerUrl": "https://www.youtube.com/embed/giXco2jaZ_4",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/AaV1YIdWKnjAadbuFsdqCyNqM5x.jpg",
+    "genre": [
+      "Action",
+      "Drama"
+    ],
+    "releaseYear": 2022,
+    "duration": "2h 11m",
+    "rating": 8.2,
+    "director": "Joseph Kosinski",
+    "cast": [
+      "Tom Cruise",
+      "Miles Teller",
+      "Jennifer Connelly",
+      "Val Kilmer"
+    ],
+    "popularity": 86
+  },
+  {
+    "id": 12,
+    "title": "Everything Everywhere All At Once",
+    "description": "A middle-aged Chinese immigrant is swept up into an insane adventure where she alone can save existence by exploring other universes and connecting with the lives she could have led.",
+    "trailerUrl": "https://www.youtube.com/embed/wxN1T1uxQ2g",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w1280/m0YjB4Vfgh1Tz0a2T0aT0aT0aT0aT0a.jpg",
+    "genre": [
+      "Comedy",
+      "Sci-Fi",
+      "Drama"
+    ],
+    "releaseYear": 2022,
+    "duration": "2h 19m",
+    "rating": 7.8,
+    "director": "Daniel Kwan",
+    "cast": [
+      "Michelle Yeoh",
+      "Stephanie Hsu",
+      "Ke Huy Quan",
+      "James Hong"
+    ],
+    "popularity": 82
+  }
+]

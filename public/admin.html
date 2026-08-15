@@ -1,18 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Panel</title>
-    <style>
-        body { background: #1a1a2e; color: white; padding: 20px; }
-        h1 { color: #00b4d8; }
-        .form-group { margin: 15px 0; }
-        input, textarea { width: 100%; padding: 10px; }
-        button { background: #00b4d8; color: white; padding: 15px; }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>👑 CineFlix Admin — Manage Trailers</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Outfit:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>*{font-family:'Poppins',sans-serif} body{background:#080a1a;color:#e2e8f0} .glass{background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08)} .gradient-bg{background:linear-gradient(135deg,#ff4757,#3742fa)} input,textarea,select{background:rgba(255,255,255,0.06)!important;border:1px solid rgba(255,255,255,0.1)!important;color:white!important} input:focus,textarea:focus{border-color:#ff4757!important;outline:none}</style>
 </head>
 <body>
-    <h1>Admin Panel</h1>
-    <p>Website is working with 12 movies!</p>
-    <p>Backend API: <code>/api/movies</code></p>
+<header class="sticky top-0 z-50 glass border-b border-white/5">
+<div class="max-w-[1600px] mx-auto px-6 py-4 flex justify-between items-center">
+<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl gradient-bg grid place-items-center"><i class="fas fa-crown"></i></div><h1 class="font-black text-xl" style="font-family:Outfit">CineFlix Admin</h1><span class="px-2 py-0.5 rounded-full glass text-xs">v2.0</span></div>
+<div class="flex gap-2">
+<a href="/" class="px-4 py-2 rounded-full glass text-sm hover:bg-white/10"><i class="fas fa-home mr-1"></i> View Site</a>
+<button onclick="resetMovies()" class="px-4 py-2 rounded-full bg-yellow-500/20 text-yellow-300 text-sm"><i class="fas fa-rotate mr-1"></i> Reset to Defaults</button>
+<span id="stats" class="px-4 py-2 rounded-full glass text-sm">Loading...</span>
+</div>
+</div>
+</header>
+
+<div class="max-w-[1600px] mx-auto px-6 py-8 grid lg:grid-cols-[420px_1fr] gap-8">
+<!-- Form -->
+<div class="glass rounded-[1.5rem] p-6 h-fit sticky top-[88px]">
+<h2 class="font-black text-xl mb-1" style="font-family:Outfit"><i class="fas fa-plus mr-2 text-red-400"></i><span id="formTitle">Add New Movie</span></h2>
+<p class="text-xs text-white/40 mb-6">All fields are validated. Trailer URL auto-converts to embed.</p>
+<form id="movieForm" class="space-y-4">
+<input type="hidden" id="movieId">
+<div class="grid grid-cols-2 gap-3">
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Title *</label><input id="title" required placeholder="Dune: Part Two" class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Year *</label><input id="releaseYear" type="number" min="1900" max="2030" required placeholder="2024" class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+</div>
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Description *</label><textarea id="description" required rows="3" placeholder="Epic saga..." class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm resize-none"></textarea></div>
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Trailer YouTube URL *</label><input id="trailerUrl" required placeholder="https://www.youtube.com/watch?v=Way9Dexny3w" class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"><p class="text-[10px] text-white/30 mt-1">Supports watch?v=, youtu.be/, or embed/</p></div>
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Thumbnail URL</label><input id="thumbnail" placeholder="https://image.tmdb.org/t/p/w500/..." class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Backdrop URL (optional)</label><input id="backdrop" placeholder="https://image.tmdb.org/t/p/w1280/..." class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+<div class="grid grid-cols-2 gap-3">
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Genres (comma)</label><input id="genre" placeholder="Sci-Fi, Adventure" class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Duration</label><input id="duration" placeholder="2h 46m" class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Rating</label><input id="rating" type="number" step="0.1" min="0" max="10" placeholder="8.7" class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Popularity</label><input id="popularity" type="number" placeholder="95" class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+<div class="flex items-end"><label class="flex items-center gap-2 glass px-4 py-2.5 rounded-xl cursor-pointer w-full"><input type="checkbox" id="featured"><span class="text-xs">Featured?</span></label></div>
+</div>
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Director</label><input id="director" placeholder="Denis Villeneuve" class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+<div><label class="text-[11px] uppercase tracking-wider text-white/40">Cast (comma separated)</label><input id="cast" placeholder="Timothée Chalamet, Zendaya" class="w-full mt-1 px-4 py-2.5 rounded-xl text-sm"></div>
+<div class="flex gap-2 pt-2">
+<button type="submit" class="flex-1 h-11 rounded-full gradient-bg font-bold text-sm"><i class="fas fa-save mr-2"></i><span id="submitText">Add Movie</span></button>
+<button type="button" onclick="clearForm()" class="px-5 h-11 rounded-full glass text-sm">Clear</button>
+</div>
+</form>
+<div id="preview" class="mt-6 hidden">
+<p class="text-xs uppercase tracking-wider text-white/40 mb-2">Live Preview</p>
+<div class="glass rounded-xl overflow-hidden"><img id="previewImg" class="w-full aspect-[2/3] object-cover"><div class="p-3"><p id="previewTitle" class="font-bold text-sm"></p><p id="previewRating" class="text-xs text-white/50"></p></div></div>
+</div>
+</div>
+
+<!-- List -->
+<div class="space-y-6">
+<div class="glass rounded-[1.5rem] p-5 flex flex-wrap gap-3 items-center justify-between">
+<div class="flex gap-2">
+<input id="adminSearch" placeholder="Search movies..." class="px-4 py-2.5 rounded-full glass text-sm w-[260px]">
+<select id="adminSort" class="px-4 py-2.5 rounded-full glass text-sm"><option value="popularity">Popularity</option><option value="rating">Rating</option><option value="releaseYear">Year</option><option value="title">Title</option></select>
+</div>
+<div class="flex gap-2 text-xs">
+<div class="px-3 py-1.5 rounded-full glass"><span id="totalCount">0</span> total</div>
+<div class="px-3 py-1.5 rounded-full bg-green-500/20 text-green-300"><i class="fas fa-check mr-1"></i> API Connected</div>
+</div>
+</div>
+
+<div id="adminGrid" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+</div>
+</div>
+
+<div id="toast" class="fixed bottom-6 right-6 glass px-5 py-3 rounded-full text-sm hidden"></div>
+
+<script>
+let movies=[];
+async function load(){
+ const r=await fetch('/api/movies'); movies=await r.json();
+ render(movies);
+ document.getElementById('totalCount').textContent=movies.length;
+ document.getElementById('stats').textContent=`${movies.length} movies`;
+}
+function render(list){
+ const grid=document.getElementById('adminGrid');
+ grid.innerHTML=list.map(m=>`
+  <div class="glass rounded-2xl overflow-hidden group hover:border-red-500/30 transition">
+   <div class="relative aspect-[16/9] bg-black"><img src="${m.thumbnail}" class="w-full h-full object-cover"><div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div><span class="absolute top-2 left-2 px-2 py-1 rounded-full bg-black/60 text-[10px]">⭐ ${m.rating}</span><span class="absolute top-2 right-2 px-2 py-1 rounded-full ${m.featured?'gradient-bg':'bg-black/60'} text-[10px]">${m.featured?'⭐ FEATURED':'#'+m.id}</span><button onclick="play('${m.trailerUrl}')" class="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition bg-black/40"><i class="fas fa-play text-2xl"></i></button></div>
+   <div class="p-4 space-y-2">
+    <h3 class="font-bold line-clamp-1">${m.title}</h3>
+    <p class="text-xs text-white/50 line-clamp-2">${m.description}</p>
+    <div class="flex flex-wrap gap-1">${m.genre.map(g=>`<span class="px-2 py-0.5 rounded-full bg-white/10 text-[10px]">${g}</span>`).join('')}</div>
+    <div class="flex justify-between items-center text-[11px] text-white/40"><span>${m.releaseYear} • ${m.duration}</span><span>${m.director}</span></div>
+    <div class="flex gap-2 pt-2">
+      <button onclick="edit(${m.id})" class="flex-1 py-2 rounded-full glass text-xs font-bold hover:bg-blue-500/20"><i class="fas fa-pen mr-1"></i>Edit</button>
+      <button onclick="del(${m.id})" class="flex-1 py-2 rounded-full glass text-xs font-bold hover:bg-red-500/20"><i class="fas fa-trash mr-1"></i>Delete</button>
+      <a href="/?movie=${m.id}" target="_blank" class="w-9 h-9 rounded-full glass grid place-items-center"><i class="fas fa-external-link-alt text-xs"></i></a>
+    </div>
+   </div>
+  </div>
+ `).join('');
+}
+
+document.getElementById('movieForm').addEventListener('submit', async e=>{
+ e.preventDefault();
+ const data={
+  title:document.getElementById('title').value.trim(),
+  description:document.getElementById('description').value.trim(),
+  trailerUrl:document.getElementById('trailerUrl').value.trim(),
+  thumbnail:document.getElementById('thumbnail').value.trim(),
+  backdrop:document.getElementById('backdrop').value.trim(),
+  genre:document.getElementById('genre').value.trim(),
+  releaseYear:document.getElementById('releaseYear').value.trim(),
+  duration:document.getElementById('duration').value.trim(),
+  rating:document.getElementById('rating').value.trim(),
+  director:document.getElementById('director').value.trim(),
+  cast:document.getElementById('cast').value.trim(),
+  popularity:document.getElementById('popularity').value.trim(),
+  featured:document.getElementById('featured').checked
+ };
+ const id=document.getElementById('movieId').value;
+ try{
+  const res=await fetch(id?`/api/movies/${id}`:'/api/movies',{method:id?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  if(!res.ok) throw new Error((await res.json()).error);
+  const saved=await res.json();
+  toast(id?`Updated "${saved.title}"`:`Added "${saved.title}"`, 'success');
+  clearForm(); load();
+ } catch(err){ toast(err.message,'error'); }
+});
+
+function edit(id){
+ const m=movies.find(x=>x.id===id);
+ if(!m) return;
+ document.getElementById('movieId').value=m.id;
+ document.getElementById('title').value=m.title;
+ document.getElementById('description').value=m.description;
+ document.getElementById('trailerUrl').value=m.trailerUrl;
+ document.getElementById('thumbnail').value=m.thumbnail;
+ document.getElementById('backdrop').value=m.backdrop||'';
+ document.getElementById('genre').value=m.genre.join(', ');
+ document.getElementById('releaseYear').value=m.releaseYear;
+ document.getElementById('duration').value=m.duration;
+ document.getElementById('rating').value=m.rating;
+ document.getElementById('director').value=m.director;
+ document.getElementById('cast').value=m.cast.join(', ');
+ document.getElementById('popularity').value=m.popularity;
+ document.getElementById('featured').checked=!!m.featured;
+ document.getElementById('formTitle').textContent=`Edit: ${m.title}`;
+ document.getElementById('submitText').textContent='Update Movie';
+ window.scrollTo({top:0,behavior:'smooth'});
+ updatePreview();
+}
+
+async function del(id){
+ if(!confirm('Delete this movie?')) return;
+ const res=await fetch(`/api/movies/${id}`,{method:'DELETE'});
+ if(res.ok){ toast('Deleted','success'); load(); } else toast('Failed','error');
+}
+
+async function resetMovies(){
+ if(!confirm('Reset to 12 default movies? This will overwrite current data.')) return;
+ const res=await fetch('/api/reset',{method:'POST'});
+ if(res.ok){ toast('Reset to defaults','success'); load(); }
+}
+
+function clearForm(){
+ document.getElementById('movieForm').reset();
+ document.getElementById('movieId').value='';
+ document.getElementById('formTitle').textContent='Add New Movie';
+ document.getElementById('submitText').textContent='Add Movie';
+ document.getElementById('preview').classList.add('hidden');
+}
+
+function play(url){ window.open(url.replace('embed/','watch?v='),'_blank'); }
+
+function toast(msg,type='info'){
+ const el=document.getElementById('toast');
+ el.textContent=msg;
+ el.classList.remove('hidden');
+ el.style.background= type==='error' ? 'rgba(239,68,68,0.2)' : 'rgba(34,197,94,0.2)';
+ setTimeout(()=>el.classList.add('hidden'),3000);
+}
+
+document.getElementById('adminSearch').addEventListener('input', e=>{
+ const q=e.target.value.toLowerCase();
+ const filtered=movies.filter(m=>m.title.toLowerCase().includes(q)||m.description.toLowerCase().includes(q));
+ render(filtered);
+});
+document.getElementById('adminSort').addEventListener('change', e=>{
+ const s=e.target.value;
+ const sorted=[...movies].sort((a,b)=>{
+  if(s==='rating') return b.rating-a.rating;
+  if(s==='releaseYear') return b.releaseYear-a.releaseYear;
+  if(s==='title') return a.title.localeCompare(b.title);
+  return b.popularity-a.popularity;
+ });
+ render(sorted);
+});
+
+// live preview
+['title','thumbnail','rating'].forEach(id=>{
+ document.getElementById(id).addEventListener('input', updatePreview);
+});
+function updatePreview(){
+ const t=document.getElementById('title').value;
+ const thumb=document.getElementById('thumbnail').value;
+ const rating=document.getElementById('rating').value;
+ if(!t && !thumb) { document.getElementById('preview').classList.add('hidden'); return; }
+ document.getElementById('preview').classList.remove('hidden');
+ document.getElementById('previewImg').src=thumb||'https://via.placeholder.com/500x750/1e293b/ffffff?text=Preview';
+ document.getElementById('previewTitle').textContent=t||'Title';
+ document.getElementById('previewRating').textContent= rating?`⭐ ${rating}/10`:'⭐ Rating';
+}
+
+load();
+</script>
 </body>
 </html>
