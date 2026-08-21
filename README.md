@@ -1,63 +1,74 @@
-# 🎬 CineFlix 2.0 — Ultimate Movie Trailer Hub
+# 9jaWhot
 
-> A premium, production-ready trailer website with 12 curated movies, advanced filtering, watchlist, and fully functional admin CRUD.
+Nigerian Whot, built as a real table: versus by username (next door or another country), tournaments up to 10, voice callouts, soft jazz, and a **server-authoritative** naira wallet. The client never decides a balance, a card, or a payout.
 
-### ✨ Live Features (What I built for you)
+## Run
 
-**Frontend Premium UI:**
-- Tailwind CSS + glassmorphism design, 1600px max, fully responsive
-- Hero featured carousel with auto-rotation (3 featured movies)
-- Movie grid with hover play, lazy images, skeleton loading, animations
-- Advanced filters: genre, year (2024/2023/2022), rating (7+, 8+), search (debounced), sort (popularity/rating/year/title)
-- Active filter chips UI, empty state handling
-- Modal trailer player: YouTube embed autoplay, related movies, director/cast info
-- Watchlist (localStorage) with sidebar drawer, counter badges
-- Likes/Favorites (heart)
-- Share via Web Share API + clipboard fallback
-- Toast notifications, keyboard shortcuts (Esc)
-- PWA manifest ready
-
-**Backend v2.0 API:**
-- `GET /api/movies?search=&genre=&year=&minRating=&sort=&order=` — advanced filtering
-- `GET /api/movies/:id` — single + related
-- `POST /api/movies` — add (admin)
-- `PUT /api/movies/:id` — edit
-- `DELETE /api/movies/:id` — delete
-- `GET /api/genres`, `/api/trending`, `/api/featured`, `/api/stats`, `/api/health`
-- `POST /api/reset` — restore 12 defaults
-- File persistence: `data/movies.json` (auto-created)
-- YouTube URL auto-converter (watch, youtu.be → embed)
-- CORS enabled, static public serving
-
-**Admin Panel `/admin`:**
-- Live preview, edit existing, delete, search, sort
-- Form validates title/trailer required, comma parsing for genres/cast
-- Reset to defaults button
-
-**Data — 12 Movies with Full Metadata:**
-Dune 2, The Batman, Spider-Verse, Avatar 2, John Wick 4, Barbie, Oppenheimer, Mission Impossible 7, Guardians 3, Black Panther 2, Top Gun Maverick, Everything Everywhere — all with TMDB posters/backdrops, YouTube embeds, directors, cast, durations.
-
-### 🚀 Run Locally
 ```bash
 npm install
+cp .env.example .env   # optional
 node server.js
-# Main: http://localhost:5000
-# Admin: http://localhost:5000/admin
-# API: http://localhost:5000/api/movies
 ```
 
-### 🌐 Deploy
-- Node 18+ compatible (uses 22 in dev, works fine). Engine warning harmless.
-- Set `PORT` env var. Persist `data/movies.json` volume if needed.
-- Optional: add `TMDB_API_KEY` env for future live import (endpoint stub present at `/api/tmdb/info`).
+Open `http://localhost:5000`  
+Admin desk: `http://localhost:5000/admin`
 
-### 📦 Stack
-Express 4, CORS, Tailwind CDN, Vanilla JS (component-style), Poppins + Outfit fonts, FontAwesome.
+Default admin (change immediately):
 
-### 🔮 Next Ideas
-- TMDB trending import script
-- User auth + MongoDB
-- Comments/ratings API
-- React + Framer Motion rewrite
+- username: `admin`
+- password: `ChangeMe_9jaWhot!`
 
-Built in one session — you asked for "all of it" and you got it.
+Set `ADMIN_PASSWORD` and `JWT_SECRET` (32+ chars) in `.env` before production.
+
+## How money actually moves
+
+Players transfer naira to the **deposit account** you publish in Admin → Bank accounts. That cash sits in your bank. The app ledger is an IOU.
+
+| Event | Ledger |
+| --- | --- |
+| You approve a deposit | Credit player |
+| Versus / tournament starts | Debit each player’s stake immediately |
+| Winner | Credit **own stake + 95% of every losing stake** |
+| House | Credit 5% of each losing stake to the house book |
+
+Example (your spec): both lock ₦1,000 → winner receives **₦1,950**, house **₦50**.  
+Ten players at ₦1,000 → winner **₦9,550**, house **₦450**.
+
+The 5% does **not** auto-hop to a second bank. It is already in the deposit float. The profit-account fields are for your bookkeeping / manual sweep. True auto-payout needs a licensed processor (Paystack or Flutterwave Transfers) plus a gambling licence.
+
+**Withdrawals:** the player’s balance is held at request. You pay the listed NUBAN, then **Mark paid**. If 50 requests are open, new ones wait **1 hour**. Returning a request refunds the hold.
+
+This is the same pattern real operators use before they plug in payout APIs — do not invent client-side balances.
+
+## Security (anti fake-funds)
+
+- Integer kobo, never floats
+- Append-only ledger + `WHERE balance >= debit` in the same SQLite transaction
+- Bets, cards, and winners exist only on the server
+- JWT with token version (password change kills sessions)
+- bcrypt passwords, rate limits, helmet, payload cap, parameterized SQL
+- Admin reconcile: user balance must equal sum(ledger)
+- Deposits credit **only** after admin approval — there is no client “add money” endpoint
+
+## Android APK
+
+The playable table is this app (green/white, 3D cards). To install on phones, open **`android-app/`** in Android Studio, set `SERVER_URL` to your hosted Node server, and **Build → Generate Signed APK**. Full steps: `android-app/README.md`.
+
+## Play Store / law
+
+Google Play treats real-money gaming strictly (IARC 18+, gambling declaration, often a licence). An unlicensed real-money app can be rejected or flagged. Ship as a **web app / PWA** first, or wrap later with Capacitor **after** you have:
+
+1. A Nigerian gaming / lottery permission that covers this product  
+2. 18+ gate (already in register)  
+3. HTTPS, privacy policy, terms (included)  
+4. No extra device permissions (this build requests none)
+
+“Harmful app” Play Protect warnings come from malware, overlays, SMS, accessibility abuse — this stack does none of that.
+
+## Voice & jazz
+
+Table callouts are recorded clips (Hold on, Pick two, Pick three, Suspension, General market, Last card, WHOT, win/lose). Settings can mute voice and the lounge jazz independently.
+
+## Stack
+
+Node 18+, Express, Socket.io, Node built-in SQLite (`data/9jawhot.db`), vanilla ES modules on the client.

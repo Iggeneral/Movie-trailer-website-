@@ -1,5 +1,3 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "dest": "/api" }
-  ]
+  "comment": "9jaWhot needs a persistent Node process (WebSockets + SQLite). Do not deploy as Vercel serverless."
 }

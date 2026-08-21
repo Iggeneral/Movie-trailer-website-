@@ -1,0 +1,25 @@
+:root { --bg:#06140e; --gold:#e8c547; --panel:#0c241a; --line:#1c3d2e; --ok:#1aad73; --bad:#e24b4b; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Outfit, system-ui, sans-serif; background: var(--bg); color: #eef8f2; min-height: 100vh; }
+a { color: var(--gold); }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+h1 { font-family: Fraunces, Georgia, serif; font-size: 28px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 14px 0 22px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+.stat b { display: block; font-size: 20px; color: var(--gold); }
+.stat span { font-size: 12px; color: #9ec9b5; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+.row { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+input, select { background: #082016; border: 1px solid var(--line); color: #fff; border-radius: 10px; padding: 10px 12px; }
+.btn { border: 0; border-radius: 999px; padding: 8px 14px; font-weight: 700; cursor: pointer; }
+.ok { background: var(--ok); color: #04160f; }
+.bad { background: var(--bad); color: #fff; }
+.gold { background: var(--gold); color: #1a1403; }
+.ghost { background: transparent; color: #fff; border: 1px solid var(--line); }
+.stack { display: grid; gap: 8px; }
+.muted { color: #9ec9b5; font-size: 13px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.note { background: #10281c; border-left: 3px solid var(--gold); padding: 12px; border-radius: 8px; font-size: 13px; color: #cfe8d9; margin-bottom: 14px; }
